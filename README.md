@@ -170,13 +170,9 @@ For now, your development workspace can be configured to work with [Nodemon](htt
 
 ```json
 {
-    /* ... */
     "scripts": {
-        /* ... */
         "watch": "nodemon --watch ./resources/snowblade -e html snowblade",
-        /* ... */
     }
-    /* ... */
 }
 ```
 
@@ -638,7 +634,7 @@ When Snowblade compiles, *this* is what you'll see:
 Copyright © 2020-2021 Stephan Casas
 
 
-Licensed under the MIT license, see LICENSE.md for details.
+Licensed under the MIT license, see LICENSE for details.
 
 <p><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mP8z8BQDwAEhQGAhKmMIQAAAABJRU5ErkJggg==" width="0" height="50"></p>
 
