@@ -403,9 +403,6 @@ Within the `<meta>` of the component definition, property defaults can be given 
 
 For the property `showPreview`, a default value of `"hidden"` is given (`display: none;` in Tailwind CSS), but on the component expression for `NoteThumbnail`, this is overriden to an empty value as `::showPreview`. In this way, you can make use of "boolean-style" properties for your components, where a truthy or falsy value is the property default that gets overriden by an empty value on a component expression.
 
-> #### Why not use quoted object syntax `<Component props="{key: value}" />` for passing properties?
-> It's ugly. Thanks for coming to my TED Talk.
-
 ### Component Property Pipes — `{{ propName | pipeName }}`
 
 Reviewing the component expression for `NoteThumbnail` you'll notice that the `::size` property was passed as `"large"`, but was rendered as:
