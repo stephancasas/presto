@@ -650,7 +650,7 @@ Hi, I'm Stephan, and I'm the developer of Snowblade.
 > 
 > * Snowblade was built after I got tired of trying to learn Vue and React.
 > * Please be my [friend](https://www.twitter.com/stephancasas).
-> * If you enjoy using Snowblade, please consider [sponsoring the project]().
+> * If you enjoy using Snowblade, please consider [sponsoring the project](https://github.com/sponsors/stephancasas).
 
 I started work on this project in mid-December and took almost two months off of my primary job as a freelance software developer to bring the concept to life. My work on it began after a single-page report for a client's project ballooned from 50 lines of code to +1200. The report, driven by Alpine, worked flawlessly, but was severely lacking with regards to organization. After taking a phone call in which I tried to debug a discrepancy with the client in realtime, struggling to sift through a mess of `#region` tags and arrowhead comments just wasn't doing it for me. I wanted a better way to work.
 
@@ -666,7 +666,7 @@ To me, it seemed crazy that things like Babel and WebPack existed, but nothing f
 
 Snowblade is definitely still in its early stages of development. When I started the project, I wasn't familiar with TypeScript, so there's a considerable amount of refactoring to be done. As I needed Snowblade to work for my job, lots of "hacks" have been applied with `// FIXME:` comments. With a reasonably-working preview, I'll be doing what I can in the coming weeks to burn through these, and promise to open the source up for pull requests once this is completed.
 
-In the interim, please submit ideas, feedback, bug reports and any other considerations as [issues](https://github.com/stephancasas/snowblade/issues) right here on GitHub. As with any open-source project, Snowblade is built as my work allows for it. If you enjoy using Snowblade, and want to see further development, please consider [sponsoring the project]().
+In the interim, please submit ideas, feedback, bug reports and any other considerations as [issues](https://github.com/stephancasas/snowblade/issues) right here on GitHub. As with any open-source project, Snowblade is built as my work allows for it. If you enjoy using Snowblade, and want to see further development, please consider [sponsoring the project](https://github.com/sponsors/stephancasas).
 
 ## Say "Hello"
 
