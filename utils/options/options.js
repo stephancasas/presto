@@ -1,0 +1,1 @@
+"use strict";Object.defineProperty(exports,"__esModule",{value:!0});const commandLineArgs=require("command-line-args"),args=[{name:"config",alias:"c",type:String,defaultValue:"snowblade.config.js",defaultOption:!0}];exports.default=commandLineArgs(args);
