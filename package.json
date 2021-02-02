@@ -1,6 +1,6 @@
 {
   "name": "snowblade",
-  "version": "0.0.25",
+  "version": "0.0.26",
   "description": "HTML componentization, built for Alpine JS.",
   "main": "cli.js",
   "bin": "cli.js",
@@ -8,10 +8,10 @@
     "start": "node cli.js"
   },
   "keywords": [
-      "html",
-      "components",
-      "componentization",
-      "alpine"
+    "html",
+    "components",
+    "componentization",
+    "alpine"
   ],
   "author": "Stephan Casas",
   "repository": {
@@ -26,6 +26,6 @@
   "dependencies": {
     "@babel/core": "^7.12.10",
     "@babel/preset-env": "^7.12.11",
-    "cheerio": "^1.0.0-rc.4"
+    "cheerio": "1.0.0-rc.4"
   }
 }
