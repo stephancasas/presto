@@ -20,7 +20,7 @@ This ease of use has the potential to come at a cost however, as the HTML source
 The goal of Snowblade is to break-down your app's HTML into smaller and reusable components without forcing you into adopting a new syntax like Vue or React's JSX. Already have most of your frontend built? Great! Snowblade works with the HTML you already have. All you have to do is extract the components that you want to reuse and organize.
 
 > #### Why not use React or Vue?
-> As developers, we each typically have a framework of choice when it comes to creating application views. Each framework comes with its own idiosyncracies; workflows; dependencies; and, often times, a learning curve (I'm looking at you, Angular). Tools like Alpine and Tailwind CSS leverage the universal familiarity of HTML and enable developers to accomplish a bulk of their frontend development in one place, the DOM — an approach that is both rapid and increasingly "instinctive" in its execution.
+> As developers, we each typically have a framework of choice when it comes to creating application views. Each framework comes with its own idiosyncracies; workflows; dependencies; and, often times, a learning curve. Tools like Alpine and Tailwind CSS leverage the universal familiarity of HTML and enable developers to accomplish a bulk of their frontend development in one place, the DOM — an approach that is both rapid and increasingly "instinctive" in its execution.
 >
 > Snowblade aims to build on that universal familiarity and seeks to make mangement of frontend components syntactically-natural, central, and accessible to everyone.
 
