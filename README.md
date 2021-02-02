@@ -86,6 +86,14 @@ export default {
 }
 ```
 
+###  `npx snowblade --init`
+
+To provision a basic configuration file, with optional sample components, you can use the `--init` option in your project's directory:
+
+```sh
+npx snowblade --init
+```
+
 ### Extending the Config File
 
 By using a JS file as the configuration object, Snowblade enables developers the ability to leverage the object-oriented nature of JavaScript. In this way, you can declare things like `include`, `props`, or `pipes` as constants, and then pass them into as many or as few `config` objects that need them:
@@ -171,7 +179,7 @@ For now, your development workspace can be configured to work with [Nodemon](htt
 ```json
 {
     "scripts": {
-        "watch": "nodemon --watch ./resources/snowblade -e html snowblade",
+        "watch": "nodemon --watch ./src/snowblade -e html --exec \"npx snowblade\"",
     }
 }
 ```
