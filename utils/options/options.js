@@ -1,1 +1,1 @@
-"use strict";Object.defineProperty(exports,"__esModule",{value:!0});const commandLineArgs=require("command-line-args"),args=[{name:"config",alias:"c",type:String,defaultValue:"snowblade.config.js",defaultOption:!0}];exports.default=commandLineArgs(args);
+"use strict";Object.defineProperty(exports,"__esModule",{value:!0});const commandLineArgs=require("command-line-args"),args=[{name:"config",alias:"c",type:String,defaultValue:"snowblade.config.js",defaultOption:!0},{name:"init",alias:"i",type:Boolean,defaultValue:!1}];exports.default=commandLineArgs(args);
