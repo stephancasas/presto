@@ -635,6 +635,266 @@ When Snowblade compiles, *this* is what you'll see:
 > 
 > I wrote this feature into Snowblade because it felt like something that should be there, but when debugging an app, the less complexity there is, the better. If you don't mind taking the extra 1.2 seconds required to wrap your property token inside a `<span>` element, you may save yourself some time if you ever need to dive into the browser inspector.
 
+## Attribute Coalescence Control:`$$provides`, `$$reserves`, `$$accepts`, `$$rejects`
+
+You've already seen that Snowblade can coalesce attributes onto the root elements of a component definition. This makes it easy to leverage utility frameworks like Tailwind CSS to create variants of existing components. To even further reduce redundancy, we can extend this behavior using action attributes.
+
+As you begin breaking-down your application's markup into recyclable components, you're likely to find that you have a need to begin nesting fundamental components within others to create variations without redundancy. Consider an input-based example where we have two components, `BasicInput` and `LabeledInput`:
+
+### `basicinput.html`
+
+```html
+<meta
+  snowblade
+  name="BasicInput"
+  ::placeholder
+  ::value
+  ::color="green"
+/>
+
+<input
+  type="text"
+  value="{{ value }}"
+  class="rounded-lg border-transparent flex-1 appearance-none border border-gray-300 fw-full py-2 px-4 bg-white text-gray-700 placeholder-gray-400 text-base focus:outline-none focus:border-{{ color }}-400"
+  placeholder="{{ placeholder }}"
+/>
+```
+
+### `labeledinput.html`
+```html
+<meta
+  snowblade
+  name="LabeledInput"
+  ::label
+  ::placeholder
+  ::value
+  ::color="green"
+/>
+
+<div>
+  <div class="pl-1 text-sm text-gray-700">{{ label }}</div>
+  <BasicInput class="w-full" ::placeholder="{{ placeholder }}" ::value="{{ value }}" ::color="{{ color }}" ::width="{{ width }}" />
+</div>
+
+```
+
+The component definition for `LabeledInput` establishes an expression for `BasicInput`, and explicitly re-declares all of the properties that could be passed onto it. There's nothing wrong with this, and it would indeed work, but it also creates redundancy and requires you to update two component definitions if you decide to change the property declarations on one.
+
+Instead of explicitly re-declaring, you can make use of any combination of Snowblade action attributes to do the heavy lifting for you, let's rewrite our definition for `LabeledInput`, using the action attributes `$$provides`, `$$reserves`, `$$accepts`, and `$$declared`:
+
+### `labeledinput.html`
+
+```html
+<meta
+  snowblade
+  name="LabeledInput"
+  ::label
+  $$provides
+  $$reserves="$$declared"
+/>
+
+<div>
+  <div class="pl-1 text-sm text-gray-700" $$accepts="class">{{ label }}</div>
+  <BasicInput class="w-full" $$accepts $$rejects="class" />
+</div>
+```
+
+With our new action attributes in-place, we can now write our component expression for `LabeledInput` as:
+
+```html
+<LabeledInput ::label="First Name" ::placeholder="John" ::$value="user.firstName" />
+```
+
+Let's break down what each action attribute does for us:
+
+* The `$$provides` attribute, declared with no value, tells Snowblade that any attributes (property, magic, or plain-old HTML) should not be applied to the markup for `LabeledInput`, but should be held for distribution to elements contained within.
+    * If we wanted to be specific, we could write the value of `$$provides` as `$$provides="::placeholder ::value ::color ::width"`, which would explicitly pass-on only those attributes — retaining the rest for property expression or coalescence.
+* The `$$reserves` attribute, with a value of `$$declared`, tells Snowblade that while we're passing-on any attribute given on an expression of `LabeledInput`, we still want to keep to value of any declared properties so that they can be expressed in the markup for `LabeledInput`.
+    * Like `$$provides`, giving an empty value for `$$reserves` acts as a wildcard — retaining all attributes given on `LabeledInput` for property expression or coalescence.
+    * The `$$declared` keyword can only be used in the value for `$$reserves` or `$$accepts`. It has no effect in `$$provides`.
+* The `$$accepts` attribute, declared with no value, tells Snowblade that any attributes collected by `$$provides` should be coalesced onto the expression for `BasicInput`. Again, this works for both properties, magic properties, and plain-old HTML.
+    * Like `$$provides` and `$$reserves`, we can also be explicit in the way that we use `$$accepts`. If desired, we could write `$$accepts="::placeholder ::value ::color ::width"`
+    * Expression of the `$$accepts` attribute can be done multiple times throughout a component definition, and on both component expressions as well as standard HTML elements.
+* The `$$accepts` attribute, declared as `$$accepts="class"` ensure's that any declaration for class on `LabeledInput` is passed on to our wrapping `<div>`. In this way, we can express with of our component using Tailwind's `w-XX` classes.
+* The `$$rejects` property, declared as `$$rejects="class"` ensures that we don't pass on the class declarations we intend to use on the wrapping `<div>` only.
+
+In this way, whether you provide an attribute using property syntax, magic syntax, or plain-old HTML, you can tell Snowblade where you want your declarations to go.
+
+## Implied Coalescence Control: `$$utilizes`
+
+Using `$$provides` and `$$accepts` is easy enough, but it still exposes us to the potential for added redundancy. Suppose we intend to use `BasicInput` in more than one component. We'd have to write a `$$provides` and `$$accepts` attribute for each occurence — leading to fragmented control.
+
+Instead, where we can anticipate desired attribute coalescence, we can make use of the `$$utilizes` attribute to keep things terse. Let's rewrite the definition for `BasicInput` and assume we have another component, `BasicButton` that we're going to use in a new definition, `OneButtonInput`:
+
+### `basicinput.html`
+```html
+<meta
+  snowblade
+  name="BasicInput"
+  ::placeholder
+  ::value
+  ::color="green"
+  ::width="full"
+  $$accepts="$$declared required readonly"
+/>
+
+<input
+  type="text"
+  value="{{ value }}"
+  class="rounded-lg border-transparent flex-1 appearance-none border border-gray-300 fw-full py-2 px-4 bg-white text-gray-700 placeholder-gray-400 text-base focus:outline-none focus:border-{{ color }}-400 w-{{ width }}"
+  placeholder="{{ placeholder }}"
+/>
+```
+
+### `basicbutton.html`
+
+```html
+<meta
+  snowblade
+  name="BasicButton"
+  ::click
+  ::label
+  ::color="green"
+  ::text="white"
+  $$accepts="$$declared"
+/>
+
+<button
+  type="button"
+  class="py-2 px-4 bg-{{ color }}-500 border border-{{ color }}-500 hover:bg-{{ fill }}-400 text-{{ text }} transition ease-in duration-200 text-center text-base font-semibold rounded-lg w-24"
+  onclick="{{ click }}"
+>
+  {{ label }}
+</button>
+```
+
+Notice that in both definitions, we've assigned `$$accepts` in the `<meta>` tag. This indicates to Snowblade that every expression of our component will acquire provided attributes according to the value for `$$accepts`:
+
+* `BasicInput`
+    * Acquires provided attributes `::placeholder`, `::value`, `::color`, and `::width`, because they are implied by `$$declared`.
+    * Acquires provided attributes `readonly` and `required`, because they are explicitly stated.
+* `BasicButton`
+    * Acquires `::click`, `::label`, `::color`, and `::text` because they are implied by `$$declared`.
+
+Let's write our component definition for `OneButtonInput` with these characteristics in-mind:
+
+### `onebuttoninput.html`
+```html
+<meta snowblade
+  name="OneButtonInput"
+  $$utilizes="BasicInput BasicButton" 
+/>
+
+<div class="flex">
+  <BasicInput />
+  <div class="flex">
+    <BasicButton class="mb-auto" />
+  </div>
+</div>
+```
+
+Now, when we write a component expression for `OneButtonInput`, we can express the properties for `BasicInput` and `BasicButton` like this:
+
+```html
+<OneButtonInput required ::placeholder="Search..." ::$value="searchTerm" ::label="Go" ::click="performSearch()" />
+```
+
+In the `<meta>` tag for our component definition, we've established `$$utilizes` and referenced both `BasicButton` and `BasicInput`. This tells Snowblade to refer to the value of `$$accepts` in each given component definition. Any attributes found there will be treated as if we'd established `$$provides` on `OneButtonInput` and `$$accepts` on each component expression.
+
+## Explicit Coalescence Control: `$$exposes`
+
+Looking at the expression for `OneButtonInput`, we can see that we've left-out a few declared properties and, if we look closely look at the definitions for `BasicButton` and `BasicInput`, we can see that the property `color` is declared in both components with very different implementations. In `BasicButton`, `color` refers to the fill colour of the button, while in `BasicInput`, it refers to the border colour of the input field. If we tried to establish `::color` on `<OneButtonInput>`, Snowblade would pass on the property to both components, and we may not like what we see.
+
+Instead, we can use the `$$exposes` attribute to designate a prefix controlling attribute coalescence. Consider an example that uses both `BasicInput` and two expressions of `BasicButton`:
+
+### `twobuttoninput.html`
+```html
+<meta snowblade name="TwoButtonInput" $$utilizes="BasicInput"/>
+
+<div class="flex space-x-2">
+  <BasicInput $$exposes="input" />
+  <BasicButton $$exposes="b1" class="mb-auto" />
+  <BasicButton $$exposes="b2" class="mb-auto" />
+</div>
+```
+
+```html
+<TwoButtonInput
+  required
+  ::$value="username"
+  ::placeholder="@johndoe"
+  input|::color="blue"
+  b1|::click="validateUsername()"
+  b1|::color="gray"
+  b2|::click="submitUsername()"
+  b2|::color="blue"
+/>
+```
+
+On each instance of `BasicButton` and `BasicInput`, the `$$exposes` attribute provides a moniker through which each individual expression can be addressed. On the component expression for `TwoButtonInput`, this is done by concatenating the value of each `$$exposes` with a pipe `|` char, and then the attribute we want to pass. As we're able to address each element directly, the attributes passed can be properties, magic properties, or plain-old HTML attributes.
+
+While it's common that you'll want to pass attributes onto component expressions, you can also use `$$exposes` to expose standard elements as well:
+
+```html
+<!-- In Component Definition -->
+  <div $$exposes="pangram" class="text-center"> My faxed joke won a pager in the cable TV quiz show. </div>
+
+<!-- On Component Expression -->
+  <MyComponent pangram|class="font-semibold text-2xl" />
+
+<!-- Resulting Markup -->
+  <div class="text-center font-semibold text-2xl"> My faxed joke won a pager in the cable TV quiz show. </div>
+```
+
+### Incremented Exposure
+
+If you prefer a more succinct approach to component exposition, you can also establish the `$$exposes` attribute in the `<meta>` tag of a component definition:
+
+### `basicbutton.html`
+```html
+<meta
+  snowblade
+  name="BasicButton"
+  $$exposes="button"
+  ::click
+  ::label
+  ::color="green"
+  ::text="white"
+  $$accepts="$$declared"
+/>
+<!--...-->
+```
+
+Now, when you use `BasicButton` within a component definition, you can access `button|attribute=""` on your expression without providing `$$exposes` directly. If you need multiple occurrences of `BasicButton`, Snowblade will use numeric incrementation to address each occurrence, starting from the top of your component's markup. In this way, `TwoButtonInput` could be written as:
+
+### `twobuttoninput.html`
+```html
+<meta snowblade name="TwoButtonInput" $$utilizes="BasicInput" />
+
+<div class="flex space-x-2">
+  <BasicInput />
+  <BasicButton class="mb-auto" />
+  <BasicButton class="mb-auto" />
+</div>
+```
+
+Then, assuming you also established `$$exposes="input"` in the definition for `BasicInput`, your expression of `TwoButtonInput` could look like this:
+
+```html
+<TwoButtonInput
+  required
+  ::$value="username"
+  ::placeholder="@johndoe"
+  input|::color="blue"
+  button|::click="validateUsername()"
+  button|::color="gray"
+  button2|::click="submitUsername()"
+  button2|::color="blue"
+/>
+```
+
+Indexing for incremented exposure begins at `1`. If you don't provide a numeric value (like the example above), Snowblade assumes a value of `1` unless another element in the component definition is assigned `$$exposes` directly as `$$exposes="button"`. In cases such as these, Snowblade would pass anything prefixed with `button|` onto that element, and anything prefixed with `button1|` onto the first instance of `BasicButton`.
+
 ## License
 Copyright © 2020-2021 Stephan Casas
 
