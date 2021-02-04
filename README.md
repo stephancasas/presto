@@ -36,7 +36,7 @@ npm i snowblade --save-dev
 
 Inside of a Node environment, Snowblade is a command line utility accessible using the npm command `snowblade` with a configuration file that you specify. Create a `snowblade.config.js` file in your project's root:
 
-### `snowblade.config.js`
+<p align="right"><strong><code>snowblade.config.js</code></strong></p>
 
 ```js
 // REQUIRED : Object | Array<Object>
@@ -57,10 +57,6 @@ export default {
         // REQUIRED: string
         // Specifies the compiled output path
         file: 'resources/views/index.html',
-        
-        // Optional : string ['none' (default) | 'minify' | 'pretty']
-        // Specifies formatting to apply to the output
-        formatting: 'none',
         
         // Optional : Object [{} (default)]
         // Specifies property values which are globally-available to components
@@ -99,7 +95,7 @@ npx snowblade --init
 By using a JS file as the configuration object, Snowblade enables developers the ability to leverage the object-oriented nature of JavaScript. In this way, you can declare things like `include`, `props`, or `pipes` as constants, and then pass them into as many or as few `config` objects that need them:
 
 
-### `snowblade.config.js`
+<p align="right"><strong><code>snowblade.config.js</code></strong></p>
 
 ```js
 const include = [
@@ -174,7 +170,7 @@ Eventually, the intention is to use implement the [Chokidar](https://github.com/
 
 For now, your development workspace can be configured to work with [Nodemon](https://github.com/remy/nodemon/) watching your Snowblade directory:
 
-### `package.json`
+<p align="right"><strong><code>package.json</code></strong></p>
 
 ```json
 {
@@ -248,7 +244,7 @@ The remainder of this README will be written under the assumption that all compo
 
 The input document example included a link to the component `./app.html` and then expressed it as `<App />` within the markup. For this to render correctly, there needs to be a component file present at `./app.html`, relative to the index document:
 
-### `app.html`
+<p align="right"><strong><code>app.html</code></strong></p>
 
 ```html
 <meta snowblade name="App">
@@ -322,7 +318,8 @@ In this way, our sidebar component can be reused anywhere throughout our app. At
 
 Looking at the component document for `Sidebar`, you might have noticed that the component expression for `NoteThumbnail` is looking a little busy. In addition to applying an attribute for Alpine, `x-for`, the component expression also has a few attributes specific to Snowblade. To understand what each of these attributes does, let's look at the component document that the `NoteThumbnail` expression references:
 
-### `notethumbnail.html`
+<p align="right"><strong><code>notethumbnail.html</code></strong></p>
+
 ```html
 <meta
     snowblade
@@ -477,7 +474,8 @@ If no content is supplied, Snowblade will render the default content expressed b
 
 Suppose you've defined a button component that you want to use with a slot:
 
-### `basicbutton.html`
+<p align="right"><strong><code>basicbutton.html</code></strong></p>
+
 ```html
 <meta snowblade name="BasicButton" ::fill="green" ::label ::width="full" />
 
@@ -635,13 +633,15 @@ When Snowblade compiles, *this* is what you'll see:
 > 
 > I wrote this feature into Snowblade because it felt like something that should be there, but when debugging an app, the less complexity there is, the better. If you don't mind taking the extra 1.2 seconds required to wrap your property token inside a `<span>` element, you may save yourself some time if you ever need to dive into the browser inspector.
 
-## Attribute Coalescence Control:`$$provides`, `$$reserves`, `$$accepts`, `$$rejects`
+## Attribute Coalescence Control
 
 You've already seen that Snowblade can coalesce attributes onto the root elements of a component definition. This makes it easy to leverage utility frameworks like Tailwind CSS to create variants of existing components. To even further reduce redundancy, we can extend this behavior using action attributes.
 
+### `$$provides`, `$$reserves`, `$$accepts`, `$$rejects`
+
 As you begin breaking-down your application's markup into recyclable components, you're likely to find that you have a need to begin nesting fundamental components within others to create variations without redundancy. Consider an input-based example where we have two components, `BasicInput` and `LabeledInput`:
 
-### `basicinput.html`
+<p align="right"><strong><code>basicinput.html</code></strong></p>
 
 ```html
 <meta
@@ -660,7 +660,8 @@ As you begin breaking-down your application's markup into recyclable components,
 />
 ```
 
-### `labeledinput.html`
+<p align="right"><strong><code>labeledinput.html</code></strong></p>
+
 ```html
 <meta
   snowblade
@@ -682,7 +683,7 @@ The component definition for `LabeledInput` establishes an expression for `Basic
 
 Instead of explicitly re-declaring, you can make use of any combination of Snowblade action attributes to do the heavy lifting for you, let's rewrite our definition for `LabeledInput`, using the action attributes `$$provides`, `$$reserves`, `$$accepts`, and `$$declared`:
 
-### `labeledinput.html`
+<p align="right"><strong><code>labeledinput.html</code></strong></p>
 
 ```html
 <meta
@@ -720,13 +721,14 @@ Let's break down what each action attribute does for us:
 
 In this way, whether you provide an attribute using property syntax, magic syntax, or plain-old HTML, you can tell Snowblade where you want your declarations to go.
 
-## Implied Coalescence Control: `$$utilizes`
+### Implied Coalescence Control: `$$utilizes`
 
 Using `$$provides` and `$$accepts` is easy enough, but it still exposes us to the potential for added redundancy. Suppose we intend to use `BasicInput` in more than one component. We'd have to write a `$$provides` and `$$accepts` attribute for each occurence — leading to fragmented control.
 
 Instead, where we can anticipate desired attribute coalescence, we can make use of the `$$utilizes` attribute to keep things terse. Let's rewrite the definition for `BasicInput` and assume we have another component, `BasicButton` that we're going to use in a new definition, `OneButtonInput`:
 
-### `basicinput.html`
+<p align="right"><strong><code>basicinput.html</code></strong></p>
+
 ```html
 <meta
   snowblade
@@ -746,7 +748,7 @@ Instead, where we can anticipate desired attribute coalescence, we can make use 
 />
 ```
 
-### `basicbutton.html`
+<p align="right"><strong><code>basicbutton.html</code></strong></p>
 
 ```html
 <meta
@@ -778,7 +780,8 @@ Notice that in both definitions, we've assigned `$$accepts` in the `<meta>` tag.
 
 Let's write our component definition for `OneButtonInput` with these characteristics in-mind:
 
-### `onebuttoninput.html`
+<p align="right"><strong><code>onebuttoninput.html</code></strong></p>
+
 ```html
 <meta snowblade
   name="OneButtonInput"
@@ -801,13 +804,14 @@ Now, when we write a component expression for `OneButtonInput`, we can express t
 
 In the `<meta>` tag for our component definition, we've established `$$utilizes` and referenced both `BasicButton` and `BasicInput`. This tells Snowblade to refer to the value of `$$accepts` in each given component definition. Any attributes found there will be treated as if we'd established `$$provides` on `OneButtonInput` and `$$accepts` on each component expression.
 
-## Explicit Coalescence Control: `$$exposes`
+### Explicit Coalescence Control: `$$exposes`
 
 Looking at the expression for `OneButtonInput`, we can see that we've left-out a few declared properties and, if we look closely look at the definitions for `BasicButton` and `BasicInput`, we can see that the property `color` is declared in both components with very different implementations. In `BasicButton`, `color` refers to the fill colour of the button, while in `BasicInput`, it refers to the border colour of the input field. If we tried to establish `::color` on `<OneButtonInput>`, Snowblade would pass on the property to both components, and we may not like what we see.
 
 Instead, we can use the `$$exposes` attribute to designate a prefix controlling attribute coalescence. Consider an example that uses both `BasicInput` and two expressions of `BasicButton`:
 
-### `twobuttoninput.html`
+<p align="right"><strong><code>twobuttoninput.html</code></strong></p>
+
 ```html
 <meta snowblade name="TwoButtonInput" $$utilizes="BasicInput"/>
 
@@ -846,11 +850,12 @@ While it's common that you'll want to pass attributes onto component expressions
   <div class="text-center font-semibold text-2xl"> My faxed joke won a pager in the cable TV quiz show. </div>
 ```
 
-### Incremented Exposure
+### Incremented Exposures: `<meta snowblade ... $$exposes >`
 
 If you prefer a more succinct approach to component exposition, you can also establish the `$$exposes` attribute in the `<meta>` tag of a component definition:
 
-### `basicbutton.html`
+<p align="right"><strong><code>basicbutton.html</code></strong></p>
+
 ```html
 <meta
   snowblade
@@ -867,7 +872,8 @@ If you prefer a more succinct approach to component exposition, you can also est
 
 Now, when you use `BasicButton` within a component definition, you can access `button|attribute=""` on your expression without providing `$$exposes` directly. If you need multiple occurrences of `BasicButton`, Snowblade will use numeric incrementation to address each occurrence, starting from the top of your component's markup. In this way, `TwoButtonInput` could be written as:
 
-### `twobuttoninput.html`
+<p align="right"><strong><code>twobuttoninput.html</code></strong></p>
+
 ```html
 <meta snowblade name="TwoButtonInput" $$utilizes="BasicInput" />
 
@@ -894,6 +900,31 @@ Then, assuming you also established `$$exposes="input"` in the definition for `B
 ```
 
 Indexing for incremented exposure begins at `1`. If you don't provide a numeric value (like the example above), Snowblade assumes a value of `1` unless another element in the component definition is assigned `$$exposes` directly as `$$exposes="button"`. In cases such as these, Snowblade would pass anything prefixed with `button|` onto that element, and anything prefixed with `button1|` onto the first instance of `BasicButton`.
+
+### Coalescence Control Reference
+
+#### Declared Only on Component Metadata
+
+Attribute | Function
+:--- | :---
+`$$provides` | Attributes matching this space-delimited list will be distributed to elements or component expressions and not coalesced onto the root component element or expressed as properties.
+`$$reserves` | Attributes matching this space-delimited list will be coalesced onto the root component element or expressed as properties, and not distributed to elements or component expressions.
+`$$utilizes` | The component will implement the `$$provides`, `$$accepts`, `$$reserves`, and `$$exposes` rules of component names matching this space-delimited list.
+`$$declared` (value) | This is a value that can be assigned to `$$reserves` or `$$accepts`, only when expressed on component metadata.
+
+#### Declared on Either Component Metadata or Elements/Component Expressions
+
+Attribute | Function
+:-- | :--
+`$$exposes` | The given value is used as a prefix in the pattern `prefix\|attribute="value"` to edit the element or component's attributes directly.
+`$$accepts` | Attributes matching this space-delimited list are received for coalescence where given by a `$$provides`declaration.
+
+#### Declared Only on Elements/Component Expresssions
+Attribute | Function — *Must be used with `$$accepts`*
+:--- | :---
+`$$rejects` | Attributes matching this space-delimited list will be rejected for coalescence where given by a `$$provides` declaration *(useful when using wildcard `$$accepts`)*.
+`$$revises` | Attributes matching this space-delimited list will replace (instead of coalesce with) their existing values *(useful for `type` on `<input type="text" />`, etc.)*.
+
 
 ## License
 Copyright © 2020-2021 Stephan Casas
