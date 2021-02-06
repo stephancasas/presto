@@ -1,6 +1,6 @@
 {
   "name": "snowblade",
-  "version": "0.0.34",
+  "version": "0.0.35",
   "description": "HTML componentization, built for Alpine JS.",
   "main": "cli.js",
   "bin": "cli.js",
