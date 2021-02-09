@@ -1,11 +1,11 @@
 []()
-<p align="center"><img src="https://get.stephancasas.com/static/presto-logo.png" width="35%"></p>
+<p align="center"><img src="https://get.stephancasas.com/static/presto-logo.png" width="45%"></p>
 
-<p align="center"><i><strong>"Magic" markup componentization — the way it should be. Specialized for Alpine JS.</strong></i></p>
+<p align="center"><i><strong>Syntactically-natural, "magic" markup componentization. Specialized for Alpine JS.</strong></i></p>
 
-# Presto.js — *Utility Preview*
+# Presto JS — *Utility Preview*
 
-Presto offers you componentization of HTML-based documents — similar to the import/export nature of ES6 modules.
+Presto offers you componentization of HTML elements — similar to the import/export nature of ES6 modules.
 
 Think of it like [Rollup](https://github.com/rollup/rollup) for HTML.
 
@@ -15,12 +15,12 @@ Think of it like [Rollup](https://github.com/rollup/rollup) for HTML.
 
 Presto was inspired by [Alpine.js](https://github.com/alpinejs/alpine), which offers developers the ability to leverage a fully-reactive framework via attributes sprinkled into your existing markup like `x-for`, `x-text`, or `x-on:click`. Using Alpine in-tandem with utility frameworks like [Tailwind CSS](https://github.com/tailwindlabs/tailwindcss), developers can rapidly build complete app frontends with little overhead and often without ever writing more than a single `.html` file. 
 
-This ease of use has the potential to come at a cost however, as the HTML source starts to grow very rapidly and with considerable redundancy  — especially for SPA-type applications.
+This ease of use has the potential to come at a cost however, as the HTML source starts to grow very rapidly and with considerable redundancy — especially for SPA-type applications.
 
 The goal of Presto is to break-down your app's HTML into smaller and reusable components without forcing you into adopting a new syntax like Vue or React's JSX. Already have most of your frontend built? Great! Presto works with the HTML you already have. All you have to do is extract the components that you want to reuse and organize.
 
 > #### Why not use React or Vue?
-> As developers, we each typically have a framework of choice when it comes to creating application views. Each framework comes with its own idiosyncracies; workflows; dependencies; and, often times, a learning curve. Tools like Alpine and Tailwind CSS leverage the universal familiarity of HTML and enable developers to accomplish a bulk of their frontend development in one place, the DOM — an approach that is both rapid and increasingly "instinctive" in its execution.
+> As developers, we each typically have a framework of choice when it comes to creating application views. Each framework comes with its own idiosyncracies; workflows; dependencies; and, often times, a learning curve. Tools like Alpine and Tailwind CSS leverage the universal familiarity of HTML and enable developers to accomplish a bulk of their frontend development in one place, the markup — an approach that is both rapid and increasingly "instinctive" in its execution.
 >
 > Presto aims to build on that universal familiarity and seeks to make mangement of frontend components syntactically-natural, central, and accessible to everyone.
 
