@@ -1,7 +1,7 @@
 {
-  "name": "snowblade",
-  "version": "0.0.35",
-  "description": "HTML componentization, built for Alpine JS.",
+  "name": "presto",
+  "version": "1.0.0",
+  "description": "HTML componentization — the way it should be. Specialized for Alpine JS.",
   "main": "cli.js",
   "bin": "cli.js",
   "scripts": {
@@ -11,17 +11,18 @@
     "html",
     "components",
     "componentization",
-    "alpine"
+    "alpine",
+    "alpinejs"
   ],
   "author": "Stephan Casas",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/stephancasas/snowblade"
+    "url": "git+https://github.com/stephancasas/presto"
   },
   "bugs": {
-    "url": "https://github.com/stephancasas/snowblade/issues"
+    "url": "https://github.com/stephancasas/presto/issues"
   },
-  "homepage": "https://github.com/stephancasas/snowblade#readme",
+  "homepage": "https://github.com/stephancasas/presto#readme",
   "license": "MIT",
   "dependencies": {
     "@babel/core": "^7.12.10",

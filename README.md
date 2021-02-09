@@ -1,54 +1,54 @@
 []()
-<p align="center"><img src="https://get.stephancasas.com/static/snowblade-logo.png" width="50%"></p>
+<p align="center"><img src="https://get.stephancasas.com/static/presto-logo.png" width="35%"></p>
 
-<p align="center"><i><strong>"Cool" componentization for faster frontend development.</strong></i></p>
+<p align="center"><i><strong>"Magic" markup componentization — the way it should be. Specialized for Alpine JS.</strong></i></p>
 
-# Snowblade.js — *Utility Preview*
+# Presto.js — *Utility Preview*
 
-Snowblade offers you componentization of HTML-based documents — similar to the import/export nature of ES6 modules.
+Presto offers you componentization of HTML-based documents — similar to the import/export nature of ES6 modules.
 
 Think of it like [Rollup](https://github.com/rollup/rollup) for HTML.
 
-> Snowblade is currently under active **initial development** and available only for preview in its compiled "dist" state. As such, pull requests are not being considered at this time. However, bug reports, feedback, and feature requests are encouraged — the goal of this repository is to create an open discussion. Please submit any considerations of this nature as [issues here on GitHub](https://github.com/stephancasas/snowblade/issues).
+> Presto is currently under active **initial development** and available only for preview in its compiled "dist" state. As such, pull requests are not being considered at this time. However, bug reports, feedback, and feature requests are encouraged — the goal of this repository is to create an open discussion. Please submit any considerations of this nature as [issues here on GitHub](https://github.com/stephancasas/presto/issues).
 
 ## Why?
 
-Snowblade was inspired by [Alpine.js](https://github.com/alpinejs/alpine), which offers developers the ability to leverage a fully-reactive framework via attributes sprinkled into your existing markup like `x-for`, `x-text`, or `x-on:click`. Using Alpine in-tandem with utility frameworks like [Tailwind CSS](https://github.com/tailwindlabs/tailwindcss), developers can rapidly build complete app frontends with little overhead and often without ever writing more than a single `.html` file. 
+Presto was inspired by [Alpine.js](https://github.com/alpinejs/alpine), which offers developers the ability to leverage a fully-reactive framework via attributes sprinkled into your existing markup like `x-for`, `x-text`, or `x-on:click`. Using Alpine in-tandem with utility frameworks like [Tailwind CSS](https://github.com/tailwindlabs/tailwindcss), developers can rapidly build complete app frontends with little overhead and often without ever writing more than a single `.html` file. 
 
 This ease of use has the potential to come at a cost however, as the HTML source starts to grow very rapidly and with considerable redundancy  — especially for SPA-type applications.
 
-The goal of Snowblade is to break-down your app's HTML into smaller and reusable components without forcing you into adopting a new syntax like Vue or React's JSX. Already have most of your frontend built? Great! Snowblade works with the HTML you already have. All you have to do is extract the components that you want to reuse and organize.
+The goal of Presto is to break-down your app's HTML into smaller and reusable components without forcing you into adopting a new syntax like Vue or React's JSX. Already have most of your frontend built? Great! Presto works with the HTML you already have. All you have to do is extract the components that you want to reuse and organize.
 
 > #### Why not use React or Vue?
 > As developers, we each typically have a framework of choice when it comes to creating application views. Each framework comes with its own idiosyncracies; workflows; dependencies; and, often times, a learning curve. Tools like Alpine and Tailwind CSS leverage the universal familiarity of HTML and enable developers to accomplish a bulk of their frontend development in one place, the DOM — an approach that is both rapid and increasingly "instinctive" in its execution.
 >
-> Snowblade aims to build on that universal familiarity and seeks to make mangement of frontend components syntactically-natural, central, and accessible to everyone.
+> Presto aims to build on that universal familiarity and seeks to make mangement of frontend components syntactically-natural, central, and accessible to everyone.
 
 ## Install
 
 **From npm:** Install the CLI tool from npm.
 
 ```sh
-npm i snowblade --save-dev
+npm i presto --save-dev
 ```
 
 ## Config
 
-Inside of a Node environment, Snowblade is a command line utility accessible using the npm command `snowblade` with a configuration file that you specify. Create a `snowblade.config.js` file in your project's root:
+Inside of a Node environment, Presto is a command line utility accessible using the npm command `presto` with a configuration file that you specify. Create a `presto.config.js` file in your project's root:
 
-<p align="right"><strong><code>snowblade.config.js</code></strong></p>
+<p align="right"><strong><code>presto.config.js</code></strong></p>
 
 ```js
 // REQUIRED : Object | Array<Object>
 export default {
     // REQUIRED : string
     // Where to begin compiling -- this should be where your <body> element is
-    input: 'resources/snowblade/views/index.html',
+    input: 'resources/presto/views/index.html',
     
     // Optional : Array<string> | string
     // Path(s) to components that should be universally available
     include: [
-        'resources/snowblade/shared/**/*.html'
+        'resources/presto/shared/**/*.html'
     ],
     
     // REQUIRED : Object | Array<Object>
@@ -82,24 +82,24 @@ export default {
 }
 ```
 
-###  `npx snowblade --init`
+###  `npx presto --init`
 
 To provision a basic configuration file, with optional sample components, you can use the `--init` option in your project's directory:
 
 ```sh
-npx snowblade --init
+npx presto --init
 ```
 
 ### Extending the Config File
 
-By using a JS file as the configuration object, Snowblade enables developers the ability to leverage the object-oriented nature of JavaScript. In this way, you can declare things like `include`, `props`, or `pipes` as constants, and then pass them into as many or as few `config` objects that need them:
+By using a JS file as the configuration object, Presto enables developers the ability to leverage the object-oriented nature of JavaScript. In this way, you can declare things like `include`, `props`, or `pipes` as constants, and then pass them into as many or as few `config` objects that need them:
 
 
-<p align="right"><strong><code>snowblade.config.js</code></strong></p>
+<p align="right"><strong><code>presto.config.js</code></strong></p>
 
 ```js
 const include = [
-    'resources/snowblade/shared/**/*.html'
+    'resources/presto/shared/**/*.html'
 ];
 
 const props = {
@@ -119,7 +119,7 @@ const pipes = {
 
 export default [
     {
-        input: 'resources/snowblade/views/app.html',
+        input: 'resources/presto/views/app.html',
         include, // assigned from const
         output: {
             file: 'resources/views/app.html',
@@ -131,7 +131,7 @@ export default [
     /* ... */
     
     {
-        input: 'resources/snowblade/views/dashboard.html',
+        input: 'resources/presto/views/dashboard.html',
         include, // assigned from const
         output: {
             file: 'resources/views/dashboard.html',
@@ -145,19 +145,19 @@ export default [
 
 ## Usage
 
-When run on its own, the `snowblade` command, by default, will look in your project's root directory for a `snowblade.config.js` file. If you wish to specify a different file for various build types, you may use the `--config` or `-c` switch to specify a different config:
+When run on its own, the `presto` command, by default, will look in your project's root directory for a `presto.config.js` file. If you wish to specify a different file for various build types, you may use the `--config` or `-c` switch to specify a different config:
 
 ```sh
-snowblade --config snowblade.config.prod.js
-snowblade --config snowblade.config.dev.js
+presto --config presto.config.prod.js
+presto --config presto.config.dev.js
 ```
 
-As part of your development workflow, Snowblade can be used with `npm-run-all` to compile your DOM with each build:
+As part of your development workflow, Presto can be used with `npm-run-all` to compile your DOM with each build:
 
 **Example in TypeScript environment:**
 ```json
 "scripts": {
-    "compile:dom": "snowblade --config snowblade.config.js",
+    "compile:dom": "presto --config presto.config.js",
     "transpile": "tsc -p ./tsconfig.json",
     "clean": "rimraf ./dist",
     "build": "npm-run-all clean transpile compile:dom"
@@ -166,32 +166,32 @@ As part of your development workflow, Snowblade can be used with `npm-run-all` t
 
 ### File-watching with [Nodemon](https://github.com/remy/nodemon/)
 
-Eventually, the intention is to use implement the [Chokidar](https://github.com/paulmillr/chokidar) file-watcher library to allow for a single command, `snowblade --watch`, to run in the background during component development. In this way, as each component is modified and saved, Snowblade will recompile to reflect changes.
+Eventually, the intention is to use implement the [Chokidar](https://github.com/paulmillr/chokidar) file-watcher library to allow for a single command, `presto --watch`, to run in the background during component development. In this way, as each component is modified and saved, Presto will recompile to reflect changes.
 
-For now, your development workspace can be configured to work with [Nodemon](https://github.com/remy/nodemon/) watching your Snowblade directory:
+For now, your development workspace can be configured to work with [Nodemon](https://github.com/remy/nodemon/) watching your Presto directory:
 
 <p align="right"><strong><code>package.json</code></strong></p>
 
 ```json
 {
     "scripts": {
-        "watch": "nodemon --watch ./src/snowblade -e html --exec \"npx snowblade\"",
+        "watch": "nodemon --watch ./src/presto -e html --exec \"npx presto\"",
     }
 }
 ```
 
 ## Overview
 
-Expression of components in Snowblade starts by declaring a component definition with native HTML, and then expressing that component in your markup through use of a syntactically-natural custom tag that you define. Starting from the `input` document in your config, your markup will be compiled as each component is referenced, expressed, and rendered.
+Expression of components in Presto starts by declaring a component definition with native HTML, and then expressing that component in your markup through use of a syntactically-natural custom tag that you define. Starting from the `input` document in your config, your markup will be compiled as each component is referenced, expressed, and rendered.
 
 ### Input Documents
 
-Snowblade output begins with one item, an input document specified as the `input` property of a config object in `snowblade.config.js`. From this input document, Snowblade will cascade through any component expressions and render them as HTML where they are written. A sample input document might look something like this:
+Presto output begins with one item, an input document specified as the `input` property of a config object in `presto.config.js`. From this input document, Presto will cascade through any component expressions and render them as HTML where they are written. A sample input document might look something like this:
 
 ```html
 <!DOCTYPE html>
-<link snowblade href="../components/app.html">
-<link snowblade href="../components/documenthead.html">
+<link presto href="../components/app.html">
+<link presto href="../components/documenthead.html">
 <html>
     <head>
         <DocumentHead />
@@ -202,11 +202,11 @@ Snowblade output begins with one item, an input document specified as the `input
 </html>
 ```
 
-As promised, the syntax is plain old HTML. The only difference is that we've included components for Snowblade to reference and render. This is first done by referencing the components using standard `<link>` tags with an empty `snowblade` attribute:
+As promised, the syntax is plain old HTML. The only difference is that we've included components for Presto to reference and render. This is first done by referencing the components using standard `<link>` tags with an empty `presto` attribute:
 
 ```html
-<link snowblade href="./components/app.html">
-<link snowblade href="./components/documenthead.html">
+<link presto href="./components/app.html">
+<link presto href="./components/documenthead.html">
 ```
 
 Think of these `<link>` tags like ES6 `import` statements. Next, the components are told where to render within the document by expressing each component's custom tag:
@@ -227,7 +227,7 @@ Think of these `<link>` tags like ES6 `import` statements. Next, the components 
 
 #### Config-provided Components
 
-If you've defined a string or array of strings on the `include` property of `snowblade.config.js`, you don't need to express your component imports using `<link>` tags for those component documents which match your given [Glob](https://github.com/isaacs/node-glob) patterns. In the case that a config-provided component has a name conflict with an import-provided component expressed via `<link>` tag, Snowblade will use the import-provided component when resolving a component expression.
+If you've defined a string or array of strings on the `include` property of `presto.config.js`, you don't need to express your component imports using `<link>` tags for those component documents which match your given [Glob](https://github.com/isaacs/node-glob) patterns. In the case that a config-provided component has a name conflict with an import-provided component expressed via `<link>` tag, Presto will use the import-provided component when resolving a component expression.
 
 > #### Unique Component Names
 > 
@@ -236,7 +236,7 @@ If you've defined a string or array of strings on the `include` property of `sno
 ---
 
 ### :rotating_light: Readme/Documentation Pragma :rotating_light:
-The remainder of this README will be written under the assumption that all components are *import-provided*, but it should be noted that this is **not necessary**, and you can provide **all** of your components using the `include` property on your config object, making things much easier. Use Snowblade how you want to use it, in whatever way makes your project easier.
+The remainder of this README will be written under the assumption that all components are *import-provided*, but it should be noted that this is **not necessary**, and you can provide **all** of your components using the `include` property on your config object, making things much easier. Use Presto how you want to use it, in whatever way makes your project easier.
 
 ---
 
@@ -247,11 +247,11 @@ The input document example included a link to the component `./app.html` and the
 <p align="right"><strong><code>app.html</code></strong></p>
 
 ```html
-<meta snowblade name="App">
-<link snowblade href="./components/modal.html">
-<link snowblade href="./components/sidebar.html">
-<link snowblade href="./components/navigation.html">
-<link snowblade href="./components/editor.html">
+<meta presto name="App">
+<link presto href="./components/modal.html">
+<link presto href="./components/sidebar.html">
+<link presto href="./components/navigation.html">
+<link presto href="./components/editor.html">
 
 <div class="flex flex-col h-screen">
     <Modal />
@@ -266,30 +266,30 @@ The input document example included a link to the component `./app.html` and the
 A lot is happening here, but let's start from the top to understand what's being expressed. Most critically, the component document starts with a `<meta>` tag that provides a handle for the component we're defining — in this case, we're defining an *app* component that will be expressed as `<App />`, so the `name` attribute of our tag is set to `"App"`. The full tag is expressed as:
 
 ```html
-<meta snowblade name="App">
+<meta presto name="App">
 ```
 
-For each component name, use of PascalCase (like ES6 classes) is recommended to aid in syntactic visibility, but this is optional and completely up to you. Snowblade component tags **are case-sensitive**, so if you declare a component as `App`, it must be expressed as `<App />`, and not as `<app />`.
+For each component name, use of PascalCase (like ES6 classes) is recommended to aid in syntactic visibility, but this is optional and completely up to you. Presto component tags **are case-sensitive**, so if you declare a component as `App`, it must be expressed as `<App />`, and not as `<app />`.
 
 > #### Case-insensitive Code Formatters
 > 
-> Some code formatters will drop capital letters in HTML tag names, especially those names which match existing standards-compliant tags. While Snowblade recognizes the difference between `<Head>` and `<head>` or `<Table>` and `<table>`, you may find that your code formatter replaces upper-cased tag names with lower-cased equivalents.
+> Some code formatters will drop capital letters in HTML tag names, especially those names which match existing standards-compliant tags. While Presto recognizes the difference between `<Head>` and `<head>` or `<Table>` and `<table>`, you may find that your code formatter replaces upper-cased tag names with lower-cased equivalents.
 > 
 > If you're using [Prettier](https://github.com/prettier/prettier), you will not experience an issue with casing unless you attempt to express a component using an upper-case name that matches an existing standard HTML tag.
 
 #### Component Nesting
 
-Below the `<meta>` tag, several `<link>` tags have been specified. Each of these will correspond to a component document that expresses its export via a `<meta snowblade name="...">`, similar to the one defined for the `App` component.
+Below the `<meta>` tag, several `<link>` tags have been specified. Each of these will correspond to a component document that expresses its export via a `<meta presto name="...">`, similar to the one defined for the `App` component.
 
-Within the body of the `App` component, there's a mix of native markup as well as Snowblade component expressions. In this way, a component can yield its HTML wherever it's needed in a document — nested inside of as many or as few expressions as is desired.
+Within the body of the `App` component, there's a mix of native markup as well as Presto component expressions. In this way, a component can yield its HTML wherever it's needed in a document — nested inside of as many or as few expressions as is desired.
 
 ### Component Attributes
 
-In the example `App` component document, notice that the `Sidebar` and `Timeline` expressions have `class` attributes applied to them. In this case, we're making use of [Tailwind CSS](https://tailwindcss.com/) to define the width of each component inside of their parent `<div>`. This is a critical aspect of Snowblade and one that makes component reusability so versatile. To take a look at how this is applied, let's examine the content of an example `sidebar.html` component:
+In the example `App` component document, notice that the `Sidebar` and `Timeline` expressions have `class` attributes applied to them. In this case, we're making use of [Tailwind CSS](https://tailwindcss.com/) to define the width of each component inside of their parent `<div>`. This is a critical aspect of Presto and one that makes component reusability so versatile. To take a look at how this is applied, let's examine the content of an example `sidebar.html` component:
 
 ```html
-<meta snowblade name="Sidebar">
-<link snowblade href="./notethumbnail.html">
+<meta presto name="Sidebar">
+<link presto href="./notethumbnail.html">
 
 <div class="flex flex-col flex-1 h-0">
     <div class="flex items-center p-2 text-xl">
@@ -310,26 +310,26 @@ If you're unfamiliar with Tailwind CSS, the classes we've applied to the inner `
 
 > *The `Modal` component is `position: absolute;` and does not count against our app's vertical space.
 
-However, the sidebar component is just that, a sidebar. It shouldn't occupy the *entire* content area – only a space to the side of it. By passing the `w-32` class in the `class` attribute for `Sidebar` in `App`, Snowblade will add `w-32` to the `class` attribute of the wrapping `<div>` in `Sidebar` when it renders its HTML for `App`. The Tailwind CSS class `w-32` will limit the width of `Sidebar` to `8rem`, leaving the remaining space in the content area to be occupied by `Editor`, on which we've applied a Tailwind CSS class of `flex-1`.
+However, the sidebar component is just that, a sidebar. It shouldn't occupy the *entire* content area – only a space to the side of it. By passing the `w-32` class in the `class` attribute for `Sidebar` in `App`, Presto will add `w-32` to the `class` attribute of the wrapping `<div>` in `Sidebar` when it renders its HTML for `App`. The Tailwind CSS class `w-32` will limit the width of `Sidebar` to `8rem`, leaving the remaining space in the content area to be occupied by `Editor`, on which we've applied a Tailwind CSS class of `flex-1`.
 
 In this way, our sidebar component can be reused anywhere throughout our app. Attributes that need to be modified based on context can be applied onto the component expression itself rather than hard-coded into the component definition.
 
 ### Component Wrapping - `$$wrap`
 
-Looking at the component document for `Sidebar`, you might have noticed that the component expression for `NoteThumbnail` is looking a little busy. In addition to applying an attribute for Alpine, `x-for`, the component expression also has a few attributes specific to Snowblade. To understand what each of these attributes does, let's look at the component document that the `NoteThumbnail` expression references:
+Looking at the component document for `Sidebar`, you might have noticed that the component expression for `NoteThumbnail` is looking a little busy. In addition to applying an attribute for Alpine, `x-for`, the component expression also has a few attributes specific to Presto. To understand what each of these attributes does, let's look at the component document that the `NoteThumbnail` expression references:
 
 <p align="right"><strong><code>notethumbnail.html</code></strong></p>
 
 ```html
 <meta
-    snowblade
+    presto
     name="NoteThumbnail"
     ::showPreview="hidden"
     ::showCheck="hidden"
     ::size="medium"
 >
 
-<script snowblade>
+<script presto>
     function size(arg) {
         return {
             large: 'h-16',
@@ -355,7 +355,7 @@ Looking at the component document for `Sidebar`, you might have noticed that the
 
 Considering the component definition for `App`, we already know that any attributes we apply to a component expression will be applied to the root element within that component. However, those familiar with Alpine know that the `x-for` attribute can only be applied to a `<template>` element, and the component definition for `NoteThumbnail` uses a `<div>` as its root.
 
-We could just wrap the root `<div>` inside of a `<template>` within the component definition, but suppose we want to use our thumbnail component elsewhere within our app? With it wrapped inside of a `<template>` tag, we might lose the ability to reuse it. Instead, the expression for `NoteThumbnail` in `Sidebar` applies the Snowblade `$$wrap` attribute, which will wrap the component definition in a specified tag (in this case, a `<template>` tag) before applying any additional attribute logic. In this way, when the component's HTML is rendered, it will look like this:
+We could just wrap the root `<div>` inside of a `<template>` within the component definition, but suppose we want to use our thumbnail component elsewhere within our app? With it wrapped inside of a `<template>` tag, we might lose the ability to reuse it. Instead, the expression for `NoteThumbnail` in `Sidebar` applies the Presto `$$wrap` attribute, which will wrap the component definition in a specified tag (in this case, a `<template>` tag) before applying any additional attribute logic. In this way, when the component's HTML is rendered, it will look like this:
 
 ```html
 <template x-for="note in notes">
@@ -374,7 +374,7 @@ We could just wrap the root `<div>` inside of a `<template>` within the componen
 </template>
 ```
 
-Notice that Snowblade applied the attribute `x-for` to the specified wrapper, and not directly onto the `<div>` inside the component definition. This is critical to note, as the `$$wrap` attribute, is the first thing to evaluate when parsing a component expression.
+Notice that Presto applied the attribute `x-for` to the specified wrapper, and not directly onto the `<div>` inside the component definition. This is critical to note, as the `$$wrap` attribute, is the first thing to evaluate when parsing a component expression.
 
 ### Component Properties — `{{ propName }}`
 
@@ -384,7 +384,7 @@ Examining that output, did you notice anything else? The `class` attribute for t
     <div class="text-xs truncate " x-text="note.content"></div>
 ```
 
-This is because a *property* was passed in the component expression for `NoteThumbnail` as `::showPreview`. Snowblade components can receive properties using the syntax `::propName="value"` on a component expression. Within the component, these property values are yielded using property tokens:
+This is because a *property* was passed in the component expression for `NoteThumbnail` as `::showPreview`. Presto components can receive properties using the syntax `::propName="value"` on a component expression. Within the component, these property values are yielded using property tokens:
 
 ```html
 <!-- Expressed as given -->
@@ -398,7 +398,7 @@ Within the `<meta>` of the component definition, property defaults can be given 
 
 ```html
 <meta
-    snowblade
+    presto
     name="NoteThumbnail"
     ::showPreview="hidden"
     ::showCheck="hidden"
@@ -428,7 +428,7 @@ function size(arg) {
 }
 ```
 
-Pipes can be useful where you'd like to use more "natural" language to express complex strings of data. In `NoteThumbnail` it's being used to convert values of `large`, `medium`, and `small` into Tailwind CSS height classes. Back in the example `snowblade.config.js`, the pipe `TailwindMxAlign` is defined to convert `left`, `right`, and `center` into their margin equivalents — useful when making use of flexbox:
+Pipes can be useful where you'd like to use more "natural" language to express complex strings of data. In `NoteThumbnail` it's being used to convert values of `large`, `medium`, and `small` into Tailwind CSS height classes. Back in the example `presto.config.js`, the pipe `TailwindMxAlign` is defined to convert `left`, `right`, and `center` into their margin equivalents — useful when making use of flexbox:
 
 ```js
 TailwindMxAlign(arg) {
@@ -440,21 +440,21 @@ TailwindMxAlign(arg) {
 }
 ```
 
-As you've probably noticed, there's two places where pipes can be defined. Where a pipe is only needed for a single component, it can be declared in a `<script>` tag with an empty `snowblade` attribute, written inside of the component document. If a pipe is going to be reused in several components, it can be declared on the `pipes` property of the `output` property of `snowblade.config.js`.
+As you've probably noticed, there's two places where pipes can be defined. Where a pipe is only needed for a single component, it can be declared in a `<script>` tag with an empty `presto` attribute, written inside of the component document. If a pipe is going to be reused in several components, it can be declared on the `pipes` property of the `output` property of `presto.config.js`.
 
 > #### The `function` Keyword in Component-scoped Pipes
 > 
-> If you're declaring a component-scoped pipe, you must declare your pipe at the root of `<script>` and provide the `function` keyword right before the pipe declaration. Component-scoped pipes are converted to named exports and then transpiled by Babel. Don't worry — to save time, pipes are cached, and this process only takes place when you change something in the content of `<script snowblade></script>`.
+> If you're declaring a component-scoped pipe, you must declare your pipe at the root of `<script>` and provide the `function` keyword right before the pipe declaration. Component-scoped pipes are converted to named exports and then transpiled by Babel. Don't worry — to save time, pipes are cached, and this process only takes place when you change something in the content of `<script presto></script>`.
 
 ## Slots
 
-Component slots in Snowblade work exactly as you'd expect. As of this writing, Snowblade supports one type of slot — the *default* slot. Named slots are under consideration, so if you'd like to see more development on this, please suggest an implementation strategy by [raising an issue](https://github.com/stephancasas/snowblade/issues).
+Component slots in Presto work exactly as you'd expect. As of this writing, Presto supports one type of slot — the *default* slot. Named slots are under consideration, so if you'd like to see more development on this, please suggest an implementation strategy by [raising an issue](https://github.com/stephancasas/presto/issues).
 
-Within a component document, a default slot can be expressed using the `<slot>` tag with an empty `snowblade` attribute:
+Within a component document, a default slot can be expressed using the `<slot>` tag with an empty `presto` attribute:
 
 ```html
 <!-- ... -->
-    <slot snowblade> Some default content goes here. </slot>
+    <slot presto> Some default content goes here. </slot>
 <!-- ... -->
 ```
 
@@ -468,7 +468,7 @@ When using a component expression, the `<slot>` will be fulfilled by including m
 <!-- ... -->
 ```
 
-If no content is supplied, Snowblade will render the default content expressed between the `<slot>` tags in the component definition.
+If no content is supplied, Presto will render the default content expressed between the `<slot>` tags in the component definition.
 
 ### Slots and Properties
 
@@ -477,13 +477,13 @@ Suppose you've defined a button component that you want to use with a slot:
 <p align="right"><strong><code>basicbutton.html</code></strong></p>
 
 ```html
-<meta snowblade name="BasicButton" ::fill="green" ::label ::width="full" />
+<meta presto name="BasicButton" ::fill="green" ::label ::width="full" />
 
 <button
   type="button"
   class="py-2 px-4 bg-{{ fill }}-500 border border-{{ fill }}-500 hover:bg-{{ fill }}-400 text-white transition ease-in duration-200 text-center text-base font-semibold rounded-lg w-{{ width }}"
 >
-  <slot snowblade>{{ label }}</slot>
+  <slot presto>{{ label }}</slot>
 </button>
 ```
 
@@ -497,7 +497,7 @@ When you use the `BasicButton` expression, you could fulfill the button's label 
 <BasicButton ::label="Click Me!" />
 ```
 
-This works because slot processing is the second step that takes place when parsing a component expression — right after the `$$wrap` attribute is evaluated. Because the default slot content is the property token `{{ label }}`, Snowblade will have access to substitute a given value when evaluating the expression-assigned property `::label`.
+This works because slot processing is the second step that takes place when parsing a component expression — right after the `$$wrap` attribute is evaluated. Because the default slot content is the property token `{{ label }}`, Presto will have access to substitute a given value when evaluating the expression-assigned property `::label`.
 
 > #### Why would you want to do this?
 > 
@@ -507,10 +507,10 @@ This works because slot processing is the second step that takes place when pars
 
 ## Magic Properties
 
-Saving the best for last, magic properties are what make Snowblade the perfect companion for Alpine developers. Consider the `BasicButton` component definition described above. If you wanted to make it more "Alpine-friendly," you could make some changes:
+Saving the best for last, magic properties are what make Presto the perfect companion for Alpine developers. Consider the `BasicButton` component definition described above. If you wanted to make it more "Alpine-friendly," you could make some changes:
 
 ```html
-<meta snowblade name="BasicButton" ::fill="'green'" ::label ::width="'full'" />
+<meta presto name="BasicButton" ::fill="'green'" ::label ::width="'full'" />
 
 <button
   type="button"
@@ -536,13 +536,13 @@ Is there a better way? Of course there is.
 Let's restore the original version of the `BasicButton` definition:
 
 ```html
-<meta snowblade name="BasicButton" ::fill="green" ::label ::width="full" />
+<meta presto name="BasicButton" ::fill="green" ::label ::width="full" />
 
 <button
   type="button"
   class="py-2 px-4 bg-{{ fill }}-500 border border-{{ fill }}-500 hover:bg-{{ fill }}-400 text-white transition ease-in duration-200 text-center text-base font-semibold rounded-lg w-{{ width }}"
 >
-  <slot snowblade>{{ label }}</slot>
+  <slot presto>{{ label }}</slot>
 </button>
 ```
 
@@ -554,7 +554,7 @@ Now, instead of mangling the component definition, let's instead change the way 
 <!-- ... -->
 ```
 
-Take note of the `$` chars added to the expression properties `label` and `fill`. When Snowblade compiles, this is what you'll see:
+Take note of the `$` chars added to the expression properties `label` and `fill`. When Presto compiles, this is what you'll see:
 
 ```html
 <template x-for="b in buttons">
@@ -577,13 +577,13 @@ Using magic properties, you can take the components you already have or componen
 
 > #### How does this work?
 > 
-> Snowblade is "context-aware" — meaning that it can tell when a property is being expressed inside of an element's attribute or inside of its `innerHTML` value. Additionally, it's aware of those attributes which are necessary for Alpine to do its work, like `x-html`, `x-text`, or anything prefixed with `x-bind:`.
+> Presto is "context-aware" — meaning that it can tell when a property is being expressed inside of an element's attribute or inside of its `innerHTML` value. Additionally, it's aware of those attributes which are necessary for Alpine to do its work, like `x-html`, `x-text`, or anything prefixed with `x-bind:`.
 
 ### A Little More Magic :sparkles::sparkles:
 Suppose you grab a an icon button from a toolkit and replace its static content with component properties to define `IconButton` like this:
 
 ```html
-<meta snowblade name="IconButton" ::fill="green" ::icon ::label ::width="full" />
+<meta presto name="IconButton" ::fill="green" ::icon ::label ::width="full" />
 
 <button
   type="button"
@@ -593,12 +593,12 @@ Suppose you grab a an icon button from a toolkit and replace its static content 
 </button>
 ```
 
-At first glance, there doesn't seem to be anything wrong, but within the `innerHTML` of `<button>` there's some interesting considerations for Snowblade:
+At first glance, there doesn't seem to be anything wrong, but within the `innerHTML` of `<button>` there's some interesting considerations for Presto:
 
 * A property token, `{{ label }}`, is inline with static HTML.
 * Within that static HTML next to a property token, another property token, `{{ icon }}`, is inside of an attribute.
 
-For standard Snowblade expression properties, this is a simple case of substitution, and nothing about which to worry. With Alpine, however, there's more to consider. If you want to dynamically set the property of `label` *and* `icon`, you'd need to wrap `{{ label }}` inside of a `<div>` or `<span>`, so that it can be assigned `x-html`, right?
+For standard Presto expression properties, this is a simple case of substitution, and nothing about which to worry. With Alpine, however, there's more to consider. If you want to dynamically set the property of `label` *and* `icon`, you'd need to wrap `{{ label }}` inside of a `<div>` or `<span>`, so that it can be assigned `x-html`, right?
 
 Not with magic properties! Leaving things as they are, let's write our component expression:
 
@@ -608,7 +608,7 @@ Not with magic properties! Leaving things as they are, let's write our component
 <!-- ... -->
 ```
 
-When Snowblade compiles, *this* is what you'll see:
+When Presto compiles, *this* is what you'll see:
 
 ```html
 <template x-for="b in buttons"
@@ -622,7 +622,7 @@ When Snowblade compiles, *this* is what you'll see:
 </template>
 ```
 
-#### Take a close look at what Snowblade did with `x-html`:
+#### Take a close look at what Presto did with `x-html`:
 * Like before, the value is wrapped as a template literal with `` ` `` chars.
 * Where a dynamic expression is required, it's wrapped as a template literal placeholder `${...}`.
 * Most importantly, the entire content of the `innerHTML` of `<button>` has been escaped into HTML-safe chars that will render exactly as you require at runtime. Alpine writes each element to the DOM at runtime, and the browser doesn't know any differently.
@@ -631,11 +631,11 @@ When Snowblade compiles, *this* is what you'll see:
 > 
 > Probably not.
 > 
-> I wrote this feature into Snowblade because it felt like something that should be there, but when debugging an app, the less complexity there is, the better. If you don't mind taking the extra 1.2 seconds required to wrap your property token inside a `<span>` element, you may save yourself some time if you ever need to dive into the browser inspector.
+> I wrote this feature into Presto because it felt like something that should be there, but when debugging an app, the less complexity there is, the better. If you don't mind taking the extra 1.2 seconds required to wrap your property token inside a `<span>` element, you may save yourself some time if you ever need to dive into the browser inspector.
 
 ## Attribute Coalescence Control
 
-You've already seen that Snowblade can coalesce attributes onto the root elements of a component definition. This makes it easy to leverage utility frameworks like Tailwind CSS to create variants of existing components. To even further reduce redundancy, we can extend this behavior using action attributes.
+You've already seen that Presto can coalesce attributes onto the root elements of a component definition. This makes it easy to leverage utility frameworks like Tailwind CSS to create variants of existing components. To even further reduce redundancy, we can extend this behavior using action attributes.
 
 ### `$$provides`, `$$reserves`, `$$accepts`, `$$rejects`
 
@@ -645,7 +645,7 @@ As you begin breaking-down your application's markup into recyclable components,
 
 ```html
 <meta
-  snowblade
+  presto
   name="BasicInput"
   ::placeholder
   ::value
@@ -664,7 +664,7 @@ As you begin breaking-down your application's markup into recyclable components,
 
 ```html
 <meta
-  snowblade
+  presto
   name="LabeledInput"
   ::label
   ::placeholder
@@ -681,13 +681,13 @@ As you begin breaking-down your application's markup into recyclable components,
 
 The component definition for `LabeledInput` establishes an expression for `BasicInput`, and explicitly re-declares all of the properties that could be passed onto it. There's nothing wrong with this, and it would indeed work, but it also creates redundancy and requires you to update two component definitions if you decide to change the property declarations on one.
 
-Instead of explicitly re-declaring, you can make use of any combination of Snowblade action attributes to do the heavy lifting for you, let's rewrite our definition for `LabeledInput`, using the action attributes `$$provides`, `$$reserves`, `$$accepts`, and `$$declared`:
+Instead of explicitly re-declaring, you can make use of any combination of Presto action attributes to do the heavy lifting for you, let's rewrite our definition for `LabeledInput`, using the action attributes `$$provides`, `$$reserves`, `$$accepts`, and `$$declared`:
 
 <p align="right"><strong><code>labeledinput.html</code></strong></p>
 
 ```html
 <meta
-  snowblade
+  presto
   name="LabeledInput"
   ::label
   $$provides
@@ -708,18 +708,18 @@ With our new action attributes in-place, we can now write our component expressi
 
 Let's break down what each action attribute does for us:
 
-* The `$$provides` attribute, declared with no value, tells Snowblade that any attributes (property, magic, or plain-old HTML) should not be applied to the markup for `LabeledInput`, but should be held for distribution to elements contained within.
+* The `$$provides` attribute, declared with no value, tells Presto that any attributes (property, magic, or plain-old HTML) should not be applied to the markup for `LabeledInput`, but should be held for distribution to elements contained within.
     * If we wanted to be specific, we could write the value of `$$provides` as `$$provides="::placeholder ::value ::color ::width"`, which would explicitly pass-on only those attributes — retaining the rest for property expression or coalescence.
-* The `$$reserves` attribute, with a value of `$$declared`, tells Snowblade that while we're passing-on any attribute given on an expression of `LabeledInput`, we still want to keep to value of any declared properties so that they can be expressed in the markup for `LabeledInput`.
+* The `$$reserves` attribute, with a value of `$$declared`, tells Presto that while we're passing-on any attribute given on an expression of `LabeledInput`, we still want to keep to value of any declared properties so that they can be expressed in the markup for `LabeledInput`.
     * Like `$$provides`, giving an empty value for `$$reserves` acts as a wildcard — retaining all attributes given on `LabeledInput` for property expression or coalescence.
     * The `$$declared` keyword can only be used in the value for `$$reserves` or `$$accepts`. It has no effect in `$$provides`.
-* The `$$accepts` attribute, declared with no value, tells Snowblade that any attributes collected by `$$provides` should be coalesced onto the expression for `BasicInput`. Again, this works for both properties, magic properties, and plain-old HTML.
+* The `$$accepts` attribute, declared with no value, tells Presto that any attributes collected by `$$provides` should be coalesced onto the expression for `BasicInput`. Again, this works for both properties, magic properties, and plain-old HTML.
     * Like `$$provides` and `$$reserves`, we can also be explicit in the way that we use `$$accepts`. If desired, we could write `$$accepts="::placeholder ::value ::color ::width"`
     * Expression of the `$$accepts` attribute can be done multiple times throughout a component definition, and on both component expressions as well as standard HTML elements.
 * The `$$accepts` attribute, declared as `$$accepts="class"` ensure's that any declaration for class on `LabeledInput` is passed on to our wrapping `<div>`. In this way, we can express with of our component using Tailwind's `w-XX` classes.
 * The `$$rejects` property, declared as `$$rejects="class"` ensures that we don't pass on the class declarations we intend to use on the wrapping `<div>` only.
 
-In this way, whether you provide an attribute using property syntax, magic syntax, or plain-old HTML, you can tell Snowblade where you want your declarations to go.
+In this way, whether you provide an attribute using property syntax, magic syntax, or plain-old HTML, you can tell Presto where you want your declarations to go.
 
 ### Implied Coalescence Control: `$$utilizes`
 
@@ -731,7 +731,7 @@ Instead, where we can anticipate desired attribute coalescence, we can make use 
 
 ```html
 <meta
-  snowblade
+  presto
   name="BasicInput"
   ::placeholder
   ::value
@@ -752,7 +752,7 @@ Instead, where we can anticipate desired attribute coalescence, we can make use 
 
 ```html
 <meta
-  snowblade
+  presto
   name="BasicButton"
   ::click
   ::label
@@ -770,7 +770,7 @@ Instead, where we can anticipate desired attribute coalescence, we can make use 
 </button>
 ```
 
-Notice that in both definitions, we've assigned `$$accepts` in the `<meta>` tag. This indicates to Snowblade that every expression of our component will acquire provided attributes according to the value for `$$accepts`:
+Notice that in both definitions, we've assigned `$$accepts` in the `<meta>` tag. This indicates to Presto that every expression of our component will acquire provided attributes according to the value for `$$accepts`:
 
 * `BasicInput`
     * Acquires provided attributes `::placeholder`, `::value`, `::color`, and `::width`, because they are implied by `$$declared`.
@@ -783,7 +783,7 @@ Let's write our component definition for `OneButtonInput` with these characteris
 <p align="right"><strong><code>onebuttoninput.html</code></strong></p>
 
 ```html
-<meta snowblade
+<meta presto
   name="OneButtonInput"
   $$utilizes="BasicInput BasicButton" 
 />
@@ -802,18 +802,18 @@ Now, when we write a component expression for `OneButtonInput`, we can express t
 <OneButtonInput required ::placeholder="Search..." ::$value="searchTerm" ::label="Go" ::click="performSearch()" />
 ```
 
-In the `<meta>` tag for our component definition, we've established `$$utilizes` and referenced both `BasicButton` and `BasicInput`. This tells Snowblade to refer to the value of `$$accepts` in each given component definition. Any attributes found there will be treated as if we'd established `$$provides` on `OneButtonInput` and `$$accepts` on each component expression.
+In the `<meta>` tag for our component definition, we've established `$$utilizes` and referenced both `BasicButton` and `BasicInput`. This tells Presto to refer to the value of `$$accepts` in each given component definition. Any attributes found there will be treated as if we'd established `$$provides` on `OneButtonInput` and `$$accepts` on each component expression.
 
 ### Explicit Coalescence Control: `$$exposes`
 
-Looking at the expression for `OneButtonInput`, we can see that we've left-out a few declared properties and, if we look closely look at the definitions for `BasicButton` and `BasicInput`, we can see that the property `color` is declared in both components with very different implementations. In `BasicButton`, `color` refers to the fill colour of the button, while in `BasicInput`, it refers to the border colour of the input field. If we tried to establish `::color` on `<OneButtonInput>`, Snowblade would pass on the property to both components, and we may not like what we see.
+Looking at the expression for `OneButtonInput`, we can see that we've left-out a few declared properties and, if we look closely look at the definitions for `BasicButton` and `BasicInput`, we can see that the property `color` is declared in both components with very different implementations. In `BasicButton`, `color` refers to the fill colour of the button, while in `BasicInput`, it refers to the border colour of the input field. If we tried to establish `::color` on `<OneButtonInput>`, Presto would pass on the property to both components, and we may not like what we see.
 
 Instead, we can use the `$$exposes` attribute to designate a prefix controlling attribute coalescence. Consider an example that uses both `BasicInput` and two expressions of `BasicButton`:
 
 <p align="right"><strong><code>twobuttoninput.html</code></strong></p>
 
 ```html
-<meta snowblade name="TwoButtonInput" $$utilizes="BasicInput"/>
+<meta presto name="TwoButtonInput" $$utilizes="BasicInput"/>
 
 <div class="flex space-x-2">
   <BasicInput $$exposes="input" />
@@ -850,7 +850,7 @@ While it's common that you'll want to pass attributes onto component expressions
   <div class="text-center font-semibold text-2xl"> My faxed joke won a pager in the cable TV quiz show. </div>
 ```
 
-### Incremented Exposures: `<meta snowblade ... $$exposes >`
+### Incremented Exposures: `<meta presto ... $$exposes >`
 
 If you prefer a more succinct approach to component exposition, you can also establish the `$$exposes` attribute in the `<meta>` tag of a component definition:
 
@@ -858,7 +858,7 @@ If you prefer a more succinct approach to component exposition, you can also est
 
 ```html
 <meta
-  snowblade
+  presto
   name="BasicButton"
   $$exposes="button"
   ::click
@@ -870,12 +870,12 @@ If you prefer a more succinct approach to component exposition, you can also est
 <!--...-->
 ```
 
-Now, when you use `BasicButton` within a component definition, you can access `button|attribute=""` on your expression without providing `$$exposes` directly. If you need multiple occurrences of `BasicButton`, Snowblade will use numeric incrementation to address each occurrence, starting from the top of your component's markup. In this way, `TwoButtonInput` could be written as:
+Now, when you use `BasicButton` within a component definition, you can access `button|attribute=""` on your expression without providing `$$exposes` directly. If you need multiple occurrences of `BasicButton`, Presto will use numeric incrementation to address each occurrence, starting from the top of your component's markup. In this way, `TwoButtonInput` could be written as:
 
 <p align="right"><strong><code>twobuttoninput.html</code></strong></p>
 
 ```html
-<meta snowblade name="TwoButtonInput" $$utilizes="BasicInput" />
+<meta presto name="TwoButtonInput" $$utilizes="BasicInput" />
 
 <div class="flex space-x-2">
   <BasicInput />
@@ -899,7 +899,7 @@ Then, assuming you also established `$$exposes="input"` in the definition for `B
 />
 ```
 
-Indexing for incremented exposure begins at `1`. If you don't provide a numeric value (like the example above), Snowblade assumes a value of `1` unless another element in the component definition is assigned `$$exposes` directly as `$$exposes="button"`. In cases such as these, Snowblade would pass anything prefixed with `button|` onto that element, and anything prefixed with `button1|` onto the first instance of `BasicButton`.
+Indexing for incremented exposure begins at `1`. If you don't provide a numeric value (like the example above), Presto assumes a value of `1` unless another element in the component definition is assigned `$$exposes` directly as `$$exposes="button"`. In cases such as these, Presto would pass anything prefixed with `button|` onto that element, and anything prefixed with `button1|` onto the first instance of `BasicButton`.
 
 ### Coalescence Control Reference
 
@@ -936,13 +936,13 @@ Licensed under the MIT license, see LICENSE for details.
 
 # About the Project
 
-Hi, I'm Stephan, and I'm the developer of Snowblade.
+Hi, I'm Stephan, and I'm the developer of Presto.
 
 > #### TL;DR
 > 
-> * Snowblade was built after I got tired of trying to learn Vue and React.
+> * Presto was built after I got tired of trying to learn Vue and React.
 > * Please be my [friend](https://www.twitter.com/stephancasas).
-> * If you enjoy using Snowblade, please consider [sponsoring the project](https://github.com/sponsors/stephancasas).
+> * If you enjoy using Presto, please consider [sponsoring the project](https://github.com/sponsors/stephancasas).
 
 I started work on this project in mid-December and took almost two months off of my primary job as a freelance software developer to bring the concept to life. My work on it began after a single-page report for a client's project ballooned from 50 lines of code to +1200. The report, driven by Alpine, worked flawlessly, but was severely lacking with regards to organization. After taking a phone call in which I tried to debug a discrepancy with the client in realtime, struggling to sift through a mess of `#region` tags and arrowhead comments just wasn't doing it for me. I wanted a better way to work.
 
@@ -956,9 +956,9 @@ For about three nights, I scoured the Internet searching for existing solutions.
 
 To me, it seemed crazy that things like Babel and WebPack existed, but nothing filled-in the transpiler gap for HTML. In reality, though, the need for something like this is a relatively fresh concept. When Caleb Porzio wrote Alpine, he introduced a new way to build reactive frontends that kept developers' work in one place: the DOM. With that in-mind, I got to work. Building something like this seemed like a great way to give back to the open-source community and an opportunity to make new friends. No, seriously, I only know like two other developers — [please be my friend](https://www.twitter.com/stephancasas).
 
-Snowblade is definitely still in its early stages of development. When I started the project, I wasn't familiar with TypeScript, so there's a considerable amount of refactoring to be done. As I needed Snowblade to work for my job, lots of "hacks" have been applied with `// FIXME:` comments. With a reasonably-working preview, I'll be doing what I can in the coming weeks to burn through these, and promise to open the source up for pull requests once this is completed.
+Presto is definitely still in its early stages of development. When I started the project, I wasn't familiar with TypeScript, so there's a considerable amount of refactoring to be done. As I needed Presto to work for my job, lots of "hacks" have been applied with `// FIXME:` comments. With a reasonably-working preview, I'll be doing what I can in the coming weeks to burn through these, and promise to open the source up for pull requests once this is completed.
 
-In the interim, please submit ideas, feedback, bug reports and any other considerations as [issues](https://github.com/stephancasas/snowblade/issues) right here on GitHub. As with any open-source project, Snowblade is built as my work allows for it. If you enjoy using Snowblade, and want to see further development, please consider [sponsoring the project](https://github.com/sponsors/stephancasas).
+In the interim, please submit ideas, feedback, bug reports and any other considerations as [issues](https://github.com/stephancasas/presto/issues) right here on GitHub. As with any open-source project, Presto is built as my work allows for it. If you enjoy using Presto, and want to see further development, please consider [sponsoring the project](https://github.com/sponsors/stephancasas).
 
 ## Say "Hello"
 
