@@ -24,6 +24,10 @@ The goal of Presto is to break-down your app's HTML into smaller and reusable co
 >
 > Presto aims to build on that universal familiarity and seeks to make mangement of frontend components syntactically-natural, central, and accessible to everyone.
 
+## Demo App
+
+If you're like most developers and prefer to learn through examples, the Presto demo app, Expresslane, is [available here](https://github.com/stephancasas/presto-demo-app).
+
 ## Install
 
 **From npm:** Install the CLI tool from npm.
