@@ -11,7 +11,7 @@ Think of it like [Rollup](https://github.com/rollup/rollup) for HTML.
 
 > Presto is currently under active **initial development** and available only for preview in its compiled "dist" state. As such, pull requests are not being considered at this time. However, bug reports, feedback, and feature requests are encouraged — the goal of this repository is to create an open discussion. Please submit any considerations of this nature as [issues here on GitHub](https://github.com/stephancasas/presto/issues).
 
-<p align="center"><img src="https://get.stephancasas.com/static/presto-splash.png" width="85%"></p>
+<p align="center"><img src="https://get.stephancasas.com/static/presto-hero-20200211.png" width="85%"></p>
 
 ## Why?
 
