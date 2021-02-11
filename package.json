@@ -1,7 +1,7 @@
 {
   "name": "presto",
-  "version": "1.0.0",
-  "description": "HTML componentization — the way it should be. Specialized for Alpine JS.",
+  "version": "1.0.01",
+  "description": "Syntactically-natural HTML componentization -- specialized for Alpine JS.",
   "main": "cli.js",
   "bin": "cli.js",
   "scripts": {
