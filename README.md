@@ -303,10 +303,10 @@ In the example `App` component document, notice that the `Sidebar` and `Timeline
     </div>
     <div class="flex flex-col flex-1 h-0 pt-2 border-t gap-y-2 overflow-y-scroll">
         <NoteThumbnail
-            x-for="note in notes"
-            $$wrap="template"
             ::showPreview
             ::size="large"
+            $$wrap="template"
+            x-for="note in notes"
         />
     </div>
 </div>
@@ -380,7 +380,7 @@ We could just wrap the root `<div>` inside of a `<template>` within the componen
 </template>
 ```
 
-Notice that Presto applied the attribute `x-for` to the specified wrapper, and not directly onto the `<div>` inside the component definition. This is critical to note, as the `$$wrap` attribute, is the first thing to evaluate when parsing a component expression.
+Notice that Presto applied the attribute `x-for` to the specified wrapper, and not directly onto the `<div>` inside the component definition. This is determined by the order in which attributes are declared. When using `$$wrap`, any attributes that are declared *after* `$$wrap` is established will be coalesced onto the wrapper element, and not onto the component's root element.
 
 ### Component Properties — `{{ propName }}`
 
@@ -529,7 +529,7 @@ Then, when iterating with `x-for`, your component expression would look somethin
 
 ```html
 <!-- ... -->
-    <BasicButton $$wrap="template" x-for="b in buttons" ::label="b.label" ::fill="b.color" ::width="'24'" />
+    <BasicButton ::label="b.label" ::fill="b.color" ::width="'24'" $$wrap="template" x-for="b in buttons" />
 <!-- ... -->
 ```
 
@@ -556,7 +556,7 @@ Now, instead of mangling the component definition, let's instead change the way 
 
 ```html
 <!-- ... -->
-    <BasicButton $$wrap="template" x-for="b in buttons" ::$label="b.label" ::$fill="b.color" ::width="24" />
+    <BasicButton ::$label="b.label" ::$fill="b.color" ::width="24" $$wrap="template" x-for="b in buttons" />
 <!-- ... -->
 ```
 
@@ -610,7 +610,7 @@ Not with magic properties! Leaving things as they are, let's write our component
 
 ```html
 <!-- ... -->
-    <BasicButton $$wrap="template" x-for="b in buttons" ::$icon="b.icon" ::$label="b.label" ::$fill="b.color" ::width="24" />
+    <BasicButton ::$icon="b.icon" ::$label="b.label" ::$fill="b.color" ::width="24" $$wrap="template" x-for="b in buttons" />
 <!-- ... -->
 ```
 
