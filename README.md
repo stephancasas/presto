@@ -28,7 +28,7 @@ The goal of Presto is to break-down your app's HTML into smaller and reusable co
 
 ## Demo App and Video Intro
 
-If you're like most developers and prefer to learn through examples, the Presto demo app, Expresslane, is [available here](https://github.com/stephancasas/presto-demo-app), and the intro video can be [viewed on YouTube here](https://www.youtube.com/watch?v=h8FEZl0UZQI).
+If you're like most developers and prefer to learn through examples, the Presto demo app, Expresslane, is [available here](https://github.com/stephancasas/presto-demo-app), and the intro video can be [viewed on YouTube here](https://www.youtube.com/watch?v=HRWVUiWx-dA).
 
 ## Install
 
