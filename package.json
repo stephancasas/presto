@@ -1,6 +1,6 @@
 {
   "name": "presto",
-  "version": "1.0.02",
+  "version": "1.0.3",
   "description": "Syntactically-natural HTML componentization -- specialized for Alpine JS.",
   "main": "cli.js",
   "bin": "cli.js",
@@ -25,8 +25,6 @@
   "homepage": "https://github.com/stephancasas/presto#readme",
   "license": "MIT",
   "dependencies": {
-    "@babel/core": "^7.12.10",
-    "@babel/preset-env": "^7.12.11",
-    "cheerio": "1.0.0-rc.4"
+    "rollup": "^2.39.0"
   }
 }
